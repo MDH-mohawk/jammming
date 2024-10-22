@@ -33,10 +33,8 @@ const songs = [
 
 function App() {
 
-  const[search,setSearch] = useState([]);
-  const[playlist,setPlaylist] = useState([]);
-
   //belown function search through a specific array and puts this in a list in the results area//
+  const[search,setSearch] = useState([]);
 
     function handleSearch(e){
         e.preventDefault();
@@ -51,6 +49,8 @@ function App() {
     }
 
 //based on user choice adds items to the playlist array though an "ADD" button//
+const[playlist,setPlaylist] = useState([]);
+
     function handlePlaylist(e){
       const kip = e.target.parentNode.children[0].id
 
@@ -62,10 +62,19 @@ function App() {
       }
     }
 
+//Below code gives the user the choice to remove a track from their custom playlist with the "DEL" button//
     function handleDelete(e){
       const id= e.target.parentNode.children[0].id;
       setPlaylist(playlist.filter((item) =>item.key != id))
     }
+
+//Managing the naming of the playlist//
+const[playListName,setPLayListName] = useState("")
+
+function handlePlayListName(e){
+  setPLayListName(e.target.value);
+  console.log(playListName);
+}
   return (
     <div className="App">
       <div className='search_area'>
@@ -74,7 +83,7 @@ function App() {
       </div>
       <div className='main'>
       <SearchResults array={search} Click={handlePlaylist}/>
-      <Playlist array={playlist} delButton={handleDelete}/>
+      <Playlist array={playlist} delButton={handleDelete} playListName={playListName} playListNameChange={handlePlayListName}/>
       </div>
     </div>
   );
