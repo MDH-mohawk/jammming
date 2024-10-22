@@ -26,8 +26,8 @@ li{
 .main{
   display:flex;
   width: 60%;
+  height: 500px;
   margin: auto;
-  justify-content: space-between;
 }
 
 .title{
@@ -36,7 +36,7 @@ li{
 
 .search_area{
   padding:20px;
-  height: 300px;
+  height: 200px;
 
 }
 

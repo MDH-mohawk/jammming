@@ -1,14 +1,14 @@
-import React from "react";
+import React,{useState} from "react";
 
-function SearchBar(){
+
+function SearchBar(props){
+
 
     return (
-        <div>
-            <form>
+            <form onSubmit={props.submit}>
                 <input type="text"></input>
                 <button type="submit">search</button>
             </form>
-        </div>
     )
 }
 

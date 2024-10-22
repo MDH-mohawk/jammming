@@ -3,10 +3,12 @@ import styles from "./Track.module.css"
 
 function Track(props){
 
-    return (
-    <li key={props.id} className={styles.main}>
+    return (< div className={styles.main}>
+    <li id={props.id} key={props.id}>
     {props.name} - {props.artist} - {props.album}
     </li>
+    <button onClick={props.ClickAdd}>{props.innerButton}</button>
+    </div>
     )
 }
 
