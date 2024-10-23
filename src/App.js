@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import Playlist from './Playlist/Playlist';
 import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
@@ -12,26 +12,33 @@ const songs = [
           "key": 1,
           "name": "Wal-Dryl",
           "artist": "Tamera",
-          "album": "Diphenhydramine HCl"
+          "album": "Diphenhydramine HCl",
+          "uri": "spotify:track:5DQIZ8XC0EP7cfRFrtzY5h"
         }, {
           "key": 2,
           "name": "Pyrantel Pamoate",
           "artist": "Jackquelin",
-          "album": "PinwormTreatment"
+          "album": "PinwormTreatment",
+          "uri": "spotify:track:2plbrEY59IikOBgBGLjaoe"
         }, {
           "key": 3, 
           "name": "Chap-et",
           "artist": "Molli",
-          "album": "White Petrolatum"
+          "album": "White Petrolatum",
+          "uri":"spotify:track:7j31rVgGX9Q2blT92VBEA0"
         }, {
           "key": 4,
           "name": "childrens pain and fever",
           "artist": "Benjamen",
-          "album": "Acetaminophen"
+          "album": "Acetaminophen",
+          "uri":"spotify:track:3Z6ReZyj8uKeiGUYf0JElU"
         }
   ]
 
 function App() {
+
+
+
 
   //belown function search through a specific array and puts this in a list in the results area//
   const[search,setSearch] = useState([]);
@@ -73,7 +80,16 @@ const[playListName,setPLayListName] = useState("")
 
 function handlePlayListName(e){
   setPLayListName(e.target.value);
-  console.log(playListName);
+}
+
+//handler to save array in the from of a customplaylist to spotify//
+
+const [spotplaylist,setSpotplaylist] = useState([]);
+
+function handleSaveToSpotify(e){
+    setSpotplaylist((playlist.map((item)=>item.uri)));
+    setPlaylist([]);
+    console.log(spotplaylist);
 }
   return (
     <div className="App">
@@ -83,7 +99,8 @@ function handlePlayListName(e){
       </div>
       <div className='main'>
       <SearchResults array={search} Click={handlePlaylist}/>
-      <Playlist array={playlist} delButton={handleDelete} playListName={playListName} playListNameChange={handlePlayListName}/>
+      <Playlist array={playlist} delButton={handleDelete} playListName={playListName} playListNameChange={handlePlayListName} SaveSpotify={handleSaveToSpotify}/>
+
       </div>
     </div>
   );
