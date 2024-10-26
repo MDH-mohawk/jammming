@@ -8,7 +8,7 @@ function SearchResults(props){
     return (
         <div className={styles.main}>
             <h1>Results</h1>
-            <Tracklist array={props.array} ClickAdd={props.Click} buttonText="ADD"/>
+            <Tracklist songs={props.array} ClickAdd={props.Click} buttonText="ADD"/>
         </div>
     )
 

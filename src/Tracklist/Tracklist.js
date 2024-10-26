@@ -5,9 +5,13 @@ import styles from './Tracklist.module.css'
 function Tracklist(props){
     
     return (
-            <ul className={styles.main}>
-                {props.array.map(person => <Track id={person.key} name={person.name} artist={person.artist} album={person.album} ClickAdd={props.ClickAdd} innerButton={props.buttonText}/>)}
-            </ul>
+            <div className={styles.main}>
+                {props.songs.map(person => {
+                    return (<Track id={person.id} name={person.name} artist={person.artist} album={person.album} ClickAdd={props.ClickAdd} innerButton={props.buttonText}/>)
+                })
+                }
+                
+            </div >
     )
 }
 

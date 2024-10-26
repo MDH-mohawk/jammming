@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import Playlist from './Playlist/Playlist';
 import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
-import Tracklist from './Tracklist/Tracklist';
-import Track from './Track/Track';
+import Spotify  from './Spotify.module';
 
 const songs = [
   {
@@ -37,21 +35,17 @@ const songs = [
 
 function App() {
 
-
-
-
   //belown function search through a specific array and puts this in a list in the results area//
   const[search,setSearch] = useState([]);
 
     function handleSearch(e){
         e.preventDefault();
-        if(e.target[0].value ==""){
+        if(e.target[0].value === ""){
           setSearch([])
         }
         else{
-        setSearch(songs.filter((song) => 
-          song.name.toLowerCase().includes(e.target[0].value.toLowerCase())));    
-        console.log(search);
+        Spotify.search(e.target[0].value).then(setSearch);
+        console.log(search)
         }       
     }
 
@@ -59,20 +53,18 @@ function App() {
 const[playlist,setPlaylist] = useState([]);
 
     function handlePlaylist(e){
-      const kip = e.target.parentNode.children[0].id
-
-      if(!playlist.includes(songs[kip-1])){
-        setPlaylist((prev) => [...prev,songs[kip-1]])
+      let adSong = search.filter((person) => person.id == e.target.parentNode.id)
+      if(!playlist.filter(person => person.id == adSong[0].id)){
+        setPlaylist((prev) => [...prev,adSong[0]])
       }
-      else{
+        console.log(playlist.filter(person => person.id == e.target.parentNode.id))
         console.log(playlist)
-      }
     }
 
 //Below code gives the user the choice to remove a track from their custom playlist with the "DEL" button//
     function handleDelete(e){
       const id= e.target.parentNode.children[0].id;
-      setPlaylist(playlist.filter((item) =>item.key != id))
+      setPlaylist(playlist.filter((item) =>item.key !== id))
     }
 
 //Managing the naming of the playlist//
