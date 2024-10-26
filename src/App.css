@@ -36,6 +36,7 @@ li{
 .search_area{
   padding:20px;
   height: 200px;
+  justify-content: center;
 
 }
 

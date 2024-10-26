@@ -10,4 +10,8 @@ text-align: left;
     height: 50px;
     align-self: center;
     float: right;
+    background-color: rgb(9, 63, 27);
+    color: white;
+    border: none;
+    border-radius: 10px;
 }

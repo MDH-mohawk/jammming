@@ -1,5 +1,5 @@
 import './App.css';
-import React,{useState} from 'react';
+import React,{useState,useCallback} from 'react';
 import Playlist from './Playlist/Playlist';
 import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
@@ -10,7 +10,7 @@ function App() {
   //belown function search through a specific array and puts this in a list in the results area//
   const[search,setSearch] = useState([]);
 
-    function handleSearch(e){
+    const handleSearch =useCallback((e) => {
         e.preventDefault();
         if(e.target[0].value === ""){
           setSearch([])
@@ -19,7 +19,7 @@ function App() {
         Spotify.search(e.target[0].value).then(setSearch);
         console.log(search)
         }       
-    }
+    },[]);
 
 //based on user choice adds items to the playlist array though an "ADD" button//
 const[playlist,setPlaylist] = useState([]);
