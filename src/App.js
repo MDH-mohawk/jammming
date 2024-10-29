@@ -19,12 +19,13 @@ function App() {
         Spotify.search(e.target[0].value).then(setSearch);
         console.log(search)
         }       
-    },[]);
+    },[search]);
 
 //based on user choice adds items to the playlist array though an "ADD" button//
 const[playlist,setPlaylist] = useState([]);
 
     function handlePlaylist(e){
+      e.preventDefault();
       let adSong = search.filter((person) => person.id == e.target.parentNode.id)
       if(!playlist.some((person) => person.id === e.target.parentNode.id)){
         setPlaylist((prev) => [...prev,adSong[0]])
@@ -34,6 +35,7 @@ const[playlist,setPlaylist] = useState([]);
 
 //Below code gives the user the choice to remove a track from their custom playlist with the "DEL" button//
     function handleDelete(e){
+      e.preventDefault();
       const id= e.target.parentNode.id;
       setPlaylist(playlist.filter((item) => item.id !== id))
     }
@@ -42,18 +44,13 @@ const[playlist,setPlaylist] = useState([]);
 const[playListName,setPLayListName] = useState("")
 
 function handlePlayListName(e){
+  e.preventDefault();
   setPLayListName(e.target.value);
 }
 
 //handler to save array in the from of a customplaylist to spotify//
 
 const [spotplaylist,setSpotplaylist] = useState([]);
-
-//function handleSaveToSpotify(){
-    //setSpotplaylist((playlist.map((item)=>item.uri)));
-    //setPlaylist([]);
-    //console.log(spotplaylist);
-//}
 
 function handleSaveSpotify(){
     const uris = playlist.map((item)=>item.uri)
