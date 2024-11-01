@@ -45,8 +45,7 @@ const Spotify = {
   },
 
   savePlaylist(name,uriList){
-    const accesstoken = Spotify.getAccessToken();
-    const headers = { Authorization: `Bearer ${accessToken}` };
+    const headers = { Authorization: `Bearer ${Spotify.getAccessToken()}` };
     let userId;
     return fetch('https://api.spotify.com/v1/me',{
       headers:{
