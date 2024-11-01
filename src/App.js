@@ -10,16 +10,9 @@ function App() {
   //belown function search through a specific array and puts this in a list in the results area//
   const[search,setSearch] = useState([]);
 
-    const handleSearch =useCallback((e) => {
-        e.preventDefault();
-        if(e.target[0].value === ""){
-          setSearch([])
-        }
-        else{
-        Spotify.search(e.target[0].value).then(setSearch);
-        console.log(search)
-        }       
-    },[search]);
+  const search2 = useCallback((term) => {
+    Spotify.search(term).then(setSearch);
+  }, []);
 
 //based on user choice adds items to the playlist array though an "ADD" button//
 const[playlist,setPlaylist] = useState([]);
@@ -63,7 +56,7 @@ function handleSaveSpotify(){
     <div className="App">
       <div className='search_area'>
       <h1 className='title'>Jammming</h1>
-      <SearchBar submit={handleSearch}/>
+      <SearchBar onSearch={search2}/>
       </div>
       <div className='main'>
       <SearchResults array={search} Click={handlePlaylist}/>
